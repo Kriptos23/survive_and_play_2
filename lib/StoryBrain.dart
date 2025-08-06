@@ -1,3 +1,5 @@
+import 'package:survive_and_play_2/classes/GameState.dart';
+
 import 'classes/Story.dart';
 
 class StoryBrain
@@ -41,8 +43,15 @@ class StoryBrain
   Story get currentStory => _storyData[_currentIndex];
   List<String> get currentChoices => currentStory.choices;
 
-  void nextStory(int choiceIndex){
-    _currentIndex = currentStory.destinations[choiceIndex];
+  void nextStory(int choiceIndex) {
+    final currentChar = GameState.selected_character;
+    final overrides = currentChar?.customDestinations[_currentIndex];
+
+    if (overrides != null && overrides.length > choiceIndex) {
+      _currentIndex = overrides[choiceIndex];
+    } else {
+      _currentIndex = currentStory.destinations[choiceIndex];
+    }
   }
 
   bool isEnd() {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:survive_and_play_2/Screens/character_selection_screen.dart';
 import 'Screens/StoryScreen.dart';
 
 
@@ -33,7 +34,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: StoryScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const CharacterSelectionScreen(),
+        '/story': (context) => const StoryScreen(),
+      },
     );
   }
 }
