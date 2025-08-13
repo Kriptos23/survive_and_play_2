@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:survive_and_play_2/Screens/character_selection_screen.dart';
-import 'Screens/StoryScreen.dart';
+import 'StoryScreen.dart';
 
 
 void main() {

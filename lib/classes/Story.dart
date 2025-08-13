@@ -1,9 +1,14 @@
+enum OutcomeType { success, failure, neutral }
+
 class Story
 {
   late final String storyText;
   late final List<String> choices;
   late final List <int> destinations;
+  final OutcomeType outcome;
 
   Story({required this.storyText, required this.choices, required this
-      .destinations});
+      .destinations, this.outcome = OutcomeType.neutral,});
+
 }
+
