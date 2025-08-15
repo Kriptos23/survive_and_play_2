@@ -1,4 +1,4 @@
-enum OutcomeType { success, failure, neutral }
+enum OutcomeType { success, failure, neutral, storyWhite }
 
 class Story
 {
@@ -8,7 +8,7 @@ class Story
   final OutcomeType outcome;
 
   Story({required this.storyText, required this.choices, required this
-      .destinations, this.outcome = OutcomeType.neutral,});
+      .destinations, this.outcome = OutcomeType.storyWhite,});
 
 }
 

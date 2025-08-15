@@ -55,14 +55,19 @@ class _StoryScreenState extends State<StoryScreen> {
   }
 
   Color _getTextColor(OutcomeType outcome) {
+    if (outcome == null) {
+      return Colors.white; // no outcome
+    }
+
     switch (outcome) {
+      case OutcomeType.storyWhite:
+        return Colors.white;
       case OutcomeType.success:
         return Colors.green;
       case OutcomeType.failure:
         return Colors.red;
       case OutcomeType.neutral:
-      default:
-        return Colors.white;
+        return Colors.yellow;
     }
   }
 
