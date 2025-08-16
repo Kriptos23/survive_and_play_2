@@ -6,13 +6,21 @@ class yourCharacterCharacteristicsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(children: [Container(child: Image.asset(GameState.selected_character.weaponImagePath)),
-        ...GameState.selected_character.weaponDescription.map((text){return Text(text);}).toList(),
-        ElevatedButton
-        (onPressed: (){
-        Navigator.pushNamed(context, '/story');
-      }, child: null)],),
+    return SafeArea(
+      child: Scaffold(
+        body: SizedBox.expand(
+          child: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage('assets/backgrounds/empty_background.png'), fit: BoxFit.cover)),
+            child: Column(children: [Container(child: Image.asset(GameState.selected_character.weaponImagePath)),
+              ...GameState.selected_character.weaponDescription.map((text){return Text(text);}).toList(),
+              ElevatedButton(onPressed: ()
+              {
+                Navigator.pushNamed(context, '/story');
+              }, child: Text('Я готов!'))],),
+          ),
+        ),
+      ),
     );
   }
 }
