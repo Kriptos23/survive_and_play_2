@@ -31,7 +31,7 @@ class CharacterSelectionScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.zero, // sharp corners
               ),
-              backgroundColor: Colors.red
+              backgroundColor: returnColor(index)
             ),
             onPressed: () {
               GameState.selected_character = characters[index];
@@ -65,4 +65,21 @@ class CharacterSelectionScreen extends StatelessWidget {
       // ),
     );
   }
+
+  Color returnColor(int index){
+    switch(index)
+    {
+      case 0:
+        return Colors.red;
+      case 1:
+        return Colors.green;
+      case 2:
+        return Colors.blue;
+      case 3:
+        return Colors.purple;
+      default:
+        return Colors.grey;
+    }
+  }
+
 }

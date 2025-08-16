@@ -11,6 +11,7 @@ class yourCharacterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(children: [Container(child: Image.asset(GameState.selected_character.imagePath)), Text('Your character!'),
+        ...GameState.selected_character.characteristics.map((text){return Text(text);}).toList(),
         ElevatedButton(onPressed: (){
         Navigator.pushNamed(context, '/character_characteristics');
         }, child: null)
