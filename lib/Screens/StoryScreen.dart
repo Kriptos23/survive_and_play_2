@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:survive_and_play_2/classes/Story.dart';
+import 'package:survive_and_play_2/classes/Styles.dart';
 import '../StoryBrain.dart';
 
 class StoryScreen extends StatefulWidget {
@@ -47,11 +48,25 @@ class _StoryScreenState extends State<StoryScreen> {
 
               // Choices
               _buildChoices(storyBrain.currentStory as Story),
+
+              const SizedBox(height: 20),
+              Text(lives_count_method() as String, style: Styles.storyText,),
             ],
           ),
         ),
       ),
     );
+  }
+
+  String lives_count_method(){
+    if(StoryBrain.lives_count==0) {
+      return 'Your LAST live';
+    }
+    else{
+      int count = StoryBrain.lives_count+1;
+      return '${count.toString()} Lives left';
+    }
+
   }
 
   Color _getTextColor(OutcomeType outcome) {

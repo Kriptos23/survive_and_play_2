@@ -17,7 +17,7 @@ class Styles {
   // Buttons
   static ButtonStyle buttonStyle = ElevatedButton.styleFrom(
     minimumSize: const Size(200, 60),
-    backgroundColor: Colors.greenAccent,
+    backgroundColor: Colors.white,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8),
     ),

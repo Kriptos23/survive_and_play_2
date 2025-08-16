@@ -4,6 +4,8 @@ import 'classes/Story.dart';
 
 class StoryBrain {
   int _currentIndex = 0;
+  static int _lives = 2;
+  int _prevStoryIndex = 0;
 
   final List<Story> _storyData = [
     Story(//0
@@ -448,15 +450,39 @@ class StoryBrain {
     final currentChar = GameState.selected_character;
     final overrides = currentChar?.customDestinations[_currentIndex];//So this is a list of string, choices of a character
 
-    if (overrides != null && overrides.length > choiceIndex) {//customDestination == null means no custom choice for the
-      // character, if null goes to else
-      _currentIndex = overrides[choiceIndex];//It goes to the next story based on selected charcter because _currentIndex is
-      // being used in getter
-      // currentStory which is above
-    } else {
-      _currentIndex = currentStory.destinations[choiceIndex];//if character doesn't have a custom choice, then it goes to the
-      // story which is in choice
+    if(currentStory.outcome == OutcomeType.storyWhite){
+      _prevStoryIndex = _currentIndex;
     }
+
+    // Determine next index
+    int nextIndex;
+    if (overrides != null && overrides.length > choiceIndex) {
+      nextIndex = overrides[choiceIndex];
+    } else {
+      nextIndex = currentStory.destinations[choiceIndex];
+    }
+
+    // Handle lives decrement
+    if (currentStory.outcome == OutcomeType.failure && _lives > 0) {
+      loseLife();
+      _currentIndex = _prevStoryIndex; // go back to previous story
+    } else {
+      _currentIndex = nextIndex;
+    }
+
+    // if (overrides != null && overrides.length > choiceIndex) {//customDestination == null means no custom choice for the
+    //   // character, if null goes to else
+    //   _currentIndex = overrides[choiceIndex];//It goes to the next story based on selected charcter because _currentIndex is
+    //   // being used in getter
+    //   // currentStory which is above
+    //   if(_lives != 0 && currentStory.outcome == OutcomeType.failure){
+    //     --_lives;
+    //     _currentIndex = _prevStoryIndex;
+    //   }
+    // } else {
+    //   _currentIndex = currentStory.destinations[choiceIndex];//if character doesn't have a custom choice, then it goes to the
+    //   // story which is in choice
+    // }
   }
 
   bool isEnd() {
@@ -465,5 +491,14 @@ class StoryBrain {
 
   void restart() {
     _currentIndex = 0;
+  }
+
+  static int get lives_count => _lives;
+
+  static void loseLife() {
+    if (_lives > 0) _lives--;
+  }
+  static void resetLives() {
+    _lives = 3;
   }
 }
