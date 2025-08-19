@@ -59,11 +59,11 @@ class _StoryScreenState extends State<StoryScreen> {
   }
 
   String lives_count_method(){
-    if(StoryBrain.lives_count==0) {
+    if(StoryBrain.lives_count==1) {
       return 'Your LAST live';
     }
     else{
-      int count = StoryBrain.lives_count+1;
+      int count = StoryBrain.lives_count;
       return '${count.toString()} Lives left';
     }
 
@@ -101,7 +101,12 @@ class _StoryScreenState extends State<StoryScreen> {
           ),
           onPressed: () {
             storyBrain.nextStory(0);
-            setState(() {});
+            if(StoryBrain.lives_count<=0){
+              Navigator.pushNamed(context, '/dead');
+              StoryBrain.resetLives();
+            }
+            setState(() {
+            });
           },
           child: Text(
             choices[0],

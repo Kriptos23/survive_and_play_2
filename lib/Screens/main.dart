@@ -3,6 +3,7 @@ import 'package:survive_and_play_2/Screens/character_selection_screen.dart';
 import 'package:survive_and_play_2/Screens/initialScreen.dart';
 import 'package:survive_and_play_2/Screens/your_character_characteristics_screen.dart';
 import 'package:survive_and_play_2/Screens/your_character_screen.dart';
+import 'package:survive_and_play_2/Screens/your_dead_screen.dart';
 import 'StoryScreen.dart';
 
 
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/your_character': (context) => const yourCharacterScreen(),
         '/character_characteristics': (context) => yourCharacterCharacteristicsScreen(),
         '/story': (context) => const StoryScreen(),
+        '/dead': (context) => const YouAreDead(),
       },
     );
   }

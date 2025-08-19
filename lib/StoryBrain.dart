@@ -4,7 +4,7 @@ import 'classes/Story.dart';
 
 class StoryBrain {
   int _currentIndex = 0;
-  static int _lives = 2;
+  static int _lives = 3;
   int _prevStoryIndex = 0;
 
   final List<Story> _storyData = [
@@ -464,9 +464,11 @@ class StoryBrain {
 
     // Handle lives decrement
     if (currentStory.outcome == OutcomeType.failure && _lives > 0) {
-      loseLife();
-      _currentIndex = _prevStoryIndex; // go back to previous story
-    } else {
+        loseLife();
+        _currentIndex = _prevStoryIndex;
+      // go back to previous story
+    }
+    else {
       _currentIndex = nextIndex;
     }
 
