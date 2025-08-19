@@ -28,12 +28,30 @@ class Initialscreen extends StatelessWidget {
                       ),
                     ],
                   )),
-              Text('Твой '
-                  'выбор '
-                  'влияет на'
-                  ' сюжет', style: Styles.storyText),
-              Text('Тебе '
-                  'выпадет уникальный персонаж со своим оружием', textAlign: TextAlign.center,style: Styles.storyText),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                margin: const EdgeInsets.symmetric(vertical: 6),
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.7), // semi-transparent bg
+                  borderRadius: BorderRadius.circular(12), // rounded rectangle
+                  border: Border.all(color: Colors.white, width: 2), // optional border
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                        'Твой '
+                        'выбор '
+                        'влияет на'
+                        ' сюжет',
+                        style: Styles.storyText),
+                    Text(
+                        'Тебе '
+                        'выпадет уникальный персонаж со своим оружием',
+                        textAlign: TextAlign.center,
+                        style: Styles.storyText),
+                  ],
+                ),
+              ),
               ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/character_selection');

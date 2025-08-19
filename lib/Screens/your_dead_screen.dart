@@ -6,20 +6,29 @@ class YouAreDead extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-            child: Text(
-          'You are dead',
-          style: TextStyle(color: Colors.red),
-          textAlign: TextAlign.center,
-        )),
-        ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/');
-            },
-            child: Text('Начать заново'))
-      ],
+    return PopScope(
+      canPop: false,
+      child: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(image: AssetImage('assets/backgrounds/your_dead_background.png'), fit: BoxFit.cover)),
+          child: Column(
+            children: [
+              Container(
+                  child: Text(
+                'You are dead',
+                style: TextStyle(color: Colors.red),
+                textAlign: TextAlign.center,
+              )),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/');
+                  },
+                  child: Text('Начать заново'))
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

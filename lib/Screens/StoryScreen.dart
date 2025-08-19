@@ -24,34 +24,47 @@ class _StoryScreenState extends State<StoryScreen> {
     return Scaffold(
       backgroundColor: Colors.deepPurple[900],
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // Story Text
-              Expanded(
-                flex: 3,
-                child: Center(
-                  child: Text(
-                    storyBrain.currentStory.storyText,
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: _getTextColor(storyBrain.currentStory.outcome as OutcomeType),
+        child: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage('assets/backgrounds/non_empty_background.png'), fit: BoxFit.cover)),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Story Text
+                Expanded(
+                  flex: 3,
+                  child: Center(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      margin: const EdgeInsets.symmetric(vertical: 6),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.7),   // semi-transparent bg
+                        borderRadius: BorderRadius.circular(12), // rounded rectangle
+                        border: Border.all(color: Colors.white, width: 2), // optional border
+                      ),
+                      child: Text(
+                        storyBrain.currentStory.storyText,
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: _getTextColor(storyBrain.currentStory.outcome as OutcomeType),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
-              ),
 
-              const SizedBox(height: 20),
+                const SizedBox(height: 20),
 
-              // Choices
-              _buildChoices(storyBrain.currentStory as Story),
+                // Choices
+                _buildChoices(storyBrain.currentStory as Story),
 
-              const SizedBox(height: 20),
-              Text(lives_count_method() as String, style: Styles.storyText,),
-            ],
+                const SizedBox(height: 20),
+                Text(lives_count_method() as String, style: Styles.storyText,),
+              ],
+            ),
           ),
         ),
       ),
